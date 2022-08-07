@@ -7,6 +7,8 @@ function isRegValid() {
   const surname = document.getElementById("surname").value;
   const email = document.getElementById("email").value;
   const cellphone = document.getElementById("cellphone").value;
+
+  const userData = {username, surname, email, idNumber, password, cellphone}
   if (
     password === "" ||
     idNumber === "" ||
@@ -41,6 +43,14 @@ function isRegValid() {
   if (/[\/d\/w]/.test(password) === false) {
     errorMsg.innerHTML = "Password should include letters and number.";
   }
+
+  axios.post('/users/register', userData)
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
 }
 
 function isLoginValid() {

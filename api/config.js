@@ -33,11 +33,15 @@ async function addInfo(firstName, lastName, email, cellphone, idNum, password) {
   }
 }
 
-addInfo(
-  "kelebogile",
-  "mokwena",
-  "email",
-  "cellphone",
-  "idnum",
-  "password"
-).then((res) => console.log(res));
+
+// addInfo(
+//   "kelebogile",
+//   "mokwena",
+//   "email",
+//   "cellphone",
+//   "idnum",
+//   "password"
+// ).then((res) => console.log(res));
+
+
+module.exports = {addInfo}
