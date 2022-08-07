@@ -8,7 +8,7 @@ function isRegValid() {
   const email = document.getElementById("email").value;
   const cellphone = document.getElementById("cellphone").value;
 
-  const userData = {username, surname, email, idNumber, password, cellphone}
+  const userData = { username, surname, email, idNumber, password, cellphone };
   if (
     password === "" ||
     idNumber === "" ||
@@ -32,8 +32,7 @@ function isRegValid() {
     errorMsg.innerHTML = "Your ID number is invalid.";
     return false
   }
-  if (
-    idNumber[7] >= 5 && idNumber[7] <= 9  ) {
+  if (idNumber[6] >= 5) {
     errorMsg.innerHTML = "You are not a female.";
     return false
   }

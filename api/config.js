@@ -8,8 +8,7 @@ const client = new Client({
   port: process.env.DB_PORT || 5432,
 });
 
-client.connect()
-
+client.connect();
 async function createTable() {
   try {
     const res = await client.query(
@@ -23,6 +22,7 @@ async function createTable() {
 
 async function addInfo(firstName, lastName, email, cellphone, idNum, password) {
   try {
+    console.log("here");
     const res = await client.query(
       `INSERT INTO users(Name, Surname, email, cellphone, idno,password ) VALUES ($1, $2, $3, $4, $5, $6)`,
       [firstName, lastName, email, cellphone, idNum, password]
@@ -32,8 +32,6 @@ async function addInfo(firstName, lastName, email, cellphone, idNum, password) {
     throw err;
   }
 }
-
-
 // addInfo(
 //   "kelebogile",
 //   "mokwena",
@@ -42,8 +40,5 @@ async function addInfo(firstName, lastName, email, cellphone, idNum, password) {
 //   "idnum",
 //   "password"
 // ).then((res) => console.log(res));
-
-
-
 
 module.exports = { addInfo, createTable };
