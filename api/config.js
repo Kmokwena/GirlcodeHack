@@ -8,8 +8,6 @@ const client = new Client({
   port: process.env.DB_PORT || 5432,
 });
 
-client.connect();
-
 async function createTable() {
   try {
     const res = await client.query(
@@ -45,3 +43,13 @@ async function addInfo(firstName, lastName, email, cellphone, idNum, password) {
 
 
 module.exports = {addInfo}
+addInfo(
+  "kelebogile",
+  "mokwena",
+  "email",
+  "cellphone",
+  "idnum",
+  "password"
+).then((res) => console.log(res));
+
+module.exports = { addInfo, createTable };
