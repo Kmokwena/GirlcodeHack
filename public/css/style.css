@@ -4,7 +4,7 @@
     font-family : sans-serif;
 }
 body{
-  background-image : linear-gradient(to left, rgb(255, 192, 203), rgb(255, 255, 255)), url("logo.jpeg");
+  background-image : linear-gradient(to left, rgb(255, 192, 203), rgb(255, 255, 255)), url("/images/logo.jpeg");
   
   background-position : center;
   background-size : cover;
