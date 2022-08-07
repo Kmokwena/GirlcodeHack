@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const config = require('./config');
 
-
+config.createTable()
 const app = express()
 const port = 3000
 
