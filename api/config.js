@@ -42,14 +42,6 @@ async function addInfo(firstName, lastName, email, cellphone, idNum, password) {
 // ).then((res) => console.log(res));
 
 
-module.exports = {addInfo}
-addInfo(
-  "kelebogile",
-  "mokwena",
-  "email",
-  "cellphone",
-  "idnum",
-  "password"
-).then((res) => console.log(res));
+
 
 module.exports = { addInfo, createTable };
