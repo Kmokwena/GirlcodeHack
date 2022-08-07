@@ -45,7 +45,7 @@ function isRegValid() {
     return false
   }
 
-  axios.post('/users/register', userData)
+  axios.post('/auth/register', userData)
   .then(function (response) {
     window.location.replace("/welcome.html") //redirect here
   })
@@ -56,5 +56,28 @@ function isRegValid() {
 }
 
 function isLoginValid() {
+  const errorMsg = document.getElementById("errorMsg");
+  const password = document.getElementById("pass").value;
+  const email = document.getElementById("email").value;
+  const userData = { password, email};
   console.log(email);
+
+  if (password === "" || email === "") {
+    errorMsg.innerHTML = "Enter all fields";
+    return false
+  }
+  
+  axios.post('/auth/login', userData)
+  .then(function (response) {
+    window.location.replace("/dashboard") //redirect here
+  })
+  .catch(function (error) {
+    console.log(error);
+    if (error.response.data.error) {
+      errorMsg.innerHTML = error.response.data.error;
+    } else {
+    errorMsg.innerHTML = "registration failed";
+    }
+  })
+  return true;
 }

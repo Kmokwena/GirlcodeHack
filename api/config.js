@@ -32,6 +32,46 @@ async function addInfo(firstName, lastName, email, cellphone, idNum, password) {
     throw err;
   }
 }
+
+// async function getUserByCellphone(cellphone) {
+//   try {
+//     const res = await client.query(
+//       `SELECT * FROM users WHERE cellphone = $1`,
+//       [cellphone]
+//     );
+//     return res;
+//   } catch (err) {
+//     throw err;
+//   }
+// }
+
+// async function getUserByEmail(email) {
+//   try {
+//     const res = await client.query(
+//       `SELECT * FROM users WHERE email = $1`,
+//       [email]
+//     );
+//     return res;
+//   } catch (err) {
+//     throw err;
+//   }
+// }
+
+async function getUserByEmailorCellphone(email, cellphone) {
+  try {
+    const res = await client.query(
+      `SELECT * FROM users WHERE email = $1 OR cellphone = $2`,
+      [email, cellphone]
+    );
+    return res;
+  } catch (err) {
+    throw err;
+  }
+}
+
+
+
+
 // addInfo(
 //   "kelebogile",
 //   "mokwena",
@@ -41,4 +81,4 @@ async function addInfo(firstName, lastName, email, cellphone, idNum, password) {
 //   "password"
 // ).then((res) => console.log(res));
 
-module.exports = { addInfo, createTable };
+module.exports = { addInfo, createTable, getUserByEmailorCellphone };

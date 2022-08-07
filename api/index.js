@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 //users stuff
-app.post("/users/register", (req, res) => {
+app.post("/auth/register", (req, res) => {
   const request = req.body;
   const { username, surname, email, cellphone, idNumber, password } = request;
 
@@ -30,6 +30,36 @@ app.post("/users/register", (req, res) => {
     .then((dbRes) => {
       res.send({ data: dbRes.rows });
     });
+});
+
+app.post("/auth/login", (req, res) => {
+  const request = req.body;
+  const { login, password } = request;
+
+  console.log(request);
+  config
+    .getUserByEmailorCellphone(login, login)
+    .then((dbRes) => {
+      console.log(dbRes)
+      if (dbRes.rows.length === 0) {
+        res.status(401).send({ error: "User not found" });
+      } else {
+        if (dbRes.rows[0].password === password) {
+          res.send({ data: dbRes.rows });
+        } else {
+          res.status(401).send({ error: "Password is incorrect" });
+        }
+      }
+    });
+});
+
+
+
+app.get('/register', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../public/register.html'));
+});
+app.get('/login', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../public/login.html'));
 });
 
 app.listen(port, () => {
