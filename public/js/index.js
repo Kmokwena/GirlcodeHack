@@ -8,7 +8,7 @@ function isRegValid() {
   const email = document.getElementById("email").value;
   const cellphone = document.getElementById("cellphone").value;
 
-  const userData = {username, surname, email, idNumber, password, cellphone}
+  const userData = { username, surname, email, idNumber, password, cellphone };
   if (
     password === "" ||
     idNumber === "" ||
@@ -28,13 +28,7 @@ function isRegValid() {
   if (idNumber.match(/[\/D]/) === false || idNumber.length > 13) {
     errorMsg.innerHTML = "Your ID number is invalid.";
   }
-  if (
-    idNumber[7] === "5" ||
-    idNumber[7] === "6" ||
-    idNumber[7] === "7" ||
-    idNumber[7] === "8" ||
-    idNumber[7] === "9"
-  ) {
+  if (idNumber[6] >= 5) {
     errorMsg.innerHTML = "You are not a female.";
   }
   if (password.length < 6) {
@@ -44,13 +38,14 @@ function isRegValid() {
     errorMsg.innerHTML = "Password should include letters and number.";
   }
 
-  axios.post('/users/register', userData)
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
+  axios
+    .post("/users/register", userData)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
 function isLoginValid() {
