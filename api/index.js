@@ -34,13 +34,12 @@ app.post("/auth/register", (req, res) => {
 
 app.post("/auth/login", (req, res) => {
   const request = req.body;
-  const { login, password } = request;
+  const { email, password } = request;
 
-  console.log(request);
+
   config
-    .getUserByEmailorCellphone(login, login)
+    .getUserByEmailorCellphone(email, email)
     .then((dbRes) => {
-      console.log(dbRes)
       if (dbRes.rows.length === 0) {
         res.status(401).send({ error: "User not found" });
       } else {
